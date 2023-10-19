@@ -4,7 +4,16 @@ public class Lists1Exercises {
       * to change. */
     public static IntList incrList(IntList L, int x) {
         /* Your code here. */
-        return L;        
+        int count = L.size();
+        /*创建一个新的list，直到count计数为0 */
+        IntList P = new IntList(L.get(count-1) + x, null);
+        count -=1;
+        while(count >=0){
+          
+          P = new IntList(L.get(count) + x,P);
+          count -=1;
+        }
+        return P;        
     }
 
     /** Returns an IntList identical to L, but with
@@ -12,6 +21,12 @@ public class Lists1Exercises {
       * the 'new' keyword. */
     public static IntList dincrList(IntList L, int x) {
         /* Your code here. */
+        IntList P = L;
+        while(P.rest!=null){
+          P.first += x;
+          P = P.rest;
+          
+        }
         return L;
     }
 
@@ -20,14 +35,13 @@ public class Lists1Exercises {
         L.rest = new IntList(7, null);
         L.rest.rest = new IntList(9, null);
 
-        System.out.println(L.size());
-        System.out.println(L.iterativeSize());
+        
 
         // Test your answers by uncommenting. Or copy and paste the
         // code for incrList and dincrList into IntList.java and
         // run it in the visualizer.
-        // System.out.println(L.get(1));
-        // System.out.println(incrList(L, 3));
-        // System.out.println(dincrList(L, 3));        
+        System.out.println(L.get(0));
+        System.out.println(incrList(L, 3).get(0));
+        System.out.println(dincrList(L, 3).get(0));        
     }
 }
